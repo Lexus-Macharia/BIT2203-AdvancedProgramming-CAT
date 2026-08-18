@@ -1,0 +1,26 @@
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+ 
+/**
+ * RMIServer.java
+ * Starts the RMI registry, creates the TemperatureConverter service,
+ * and registers ("binds") it under a simple name so clients can find it.
+ */
+public class RMIServer {
+    public static void main(String[] args) {
+        try {
+            // Start the RMI registry on the default port (1099)
+            Registry registry = LocateRegistry.createRegistry(1099);
+ 
+            // Create the actual service object
+            TemperatureConverter converter = new TemperatureConverterImpl();
+ 
+            // Register it under the name "TemperatureService"
+            registry.rebind("TemperatureService", converter);
+ 
+            System.out.println("RMI Server is running and waiting for clients...");
+        } catch (Exception e) {
+            System.out.println("Server error: " + e.getMessage());
+        }
+    }
+}
