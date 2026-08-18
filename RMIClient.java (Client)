@@ -1,0 +1,28 @@
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+ 
+/**
+ * RMIClient.java
+ * Connects to the RMI registry, looks up the TemperatureConverter
+ * service, and uses it to convert 25 degrees Celsius to Fahrenheit.
+ */
+public class RMIClient {
+    public static void main(String[] args) {
+        try {
+            // Connect to the registry running on the local machine
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+ 
+            // Look up the remote service by the name the server used
+            TemperatureConverter converter = (TemperatureConverter) registry.lookup("TemperatureService");
+ 
+            // Call the remote method as if it were a normal local method
+            double celsius = 25.0;
+            double fahrenheit = converter.celsiusToFahrenheit(celsius);
+ 
+            System.out.println(celsius + " Celsius = " + fahrenheit + " Fahrenheit");
+        } catch (Exception e) {
+            System.out.println("Client error: " + e.getMessage());
+        }
+    }
+}
+ 
