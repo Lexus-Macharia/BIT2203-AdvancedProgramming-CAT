@@ -1,13 +1,5 @@
-import org.springframework.stereotype.Repository;
- 
-@Repository
-public class UserRepositoryImpl implements UserRepository {
- 
-    @Override
-    public String findUsernameById(int id) {
-        // In a real project, this would run a database query.
-        // Here we just return a sample value to keep the example simple.
-        return "student_" + id;
-    }
+public interface UserRepository {
+
+    String findUsernameById(int id);
+
 }
- 
