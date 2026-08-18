@@ -1,0 +1,30 @@
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.*;
+import javax.servlet.http.*;
+ 
+/**
+ * BookController.java
+ * The Controller in this MVC example. It asks the DAO for the
+ * list of books, stores that list in the request, and forwards
+ * the request to the JSP page that will display it.
+ */
+public class BookController extends HttpServlet {
+ 
+    private final BookDAO bookDAO = new BookDAO();
+ 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+ 
+        // Ask the Model/DAO for the data
+        List<Book> books = bookDAO.getAllBooks();
+ 
+        // Put the data somewhere the View (JSP) can read it
+        request.setAttribute("books", books);
+ 
+        // Forward the request to the View for display
+        RequestDispatcher dispatcher = request.getRequestDispatcher("bookList.jsp");
+        dispatcher.forward(request, response);
+    }
+}
