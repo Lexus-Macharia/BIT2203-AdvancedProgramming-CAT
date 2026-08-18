@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+import java.util.List;
+ 
+/**
+ * BookDAO.java
+ * Responsible for getting the list of books.
+ * To keep this example simple, the books are stored in memory
+ * instead of a real database, but the idea is the same: the
+ * Controller does not need to know HOW the books are fetched.
+ */
+public class BookDAO {
+ 
+    public List<Book> getAllBooks() {
+        List<Book> books = new ArrayList<>();
+ 
+        books.add(new Book("Clean Code", "Robert C. Martin", "9780132350884"));
+        books.add(new Book("Effective Java", "Joshua Bloch", "9780134685991"));
+        books.add(new Book("Head First Java", "Kathy Sierra", "9780596009205"));
+ 
+        return books;
+    }
+}
