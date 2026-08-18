@@ -1,25 +1,17 @@
-import java.net.URL;
+import org.springframework.stereotype.Service;
 
-public class URLParser {
+@Service
+public class UserService {
 
-    public static void main(String[] args) throws Exception {
+    private UserRepository userRepository;
 
-        // URL to analyze
-        String link = "https://api.techstore.com:8443/products/category/electronics?sort=price&limit=20#reviews";
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-        // Create URL object
-        URL url = new URL(link);
+    public String getWelcomeMessage(int userId) {
+        String username = userRepository.findUsernameById(userId);
 
-        // Display URL parts
-        System.out.println("Protocol: " + url.getProtocol());
-        System.out.println("Host: " + url.getHost());
-        System.out.println("Port: " + url.getPort());
-        System.out.println("Path: " + url.getPath());
-
-        // Display query parameters
-        System.out.println("Query: " + url.getQuery());
-
-        // Display fragment
-        System.out.println("Fragment: " + url.getRef());
+        return "Welcome, " + username + "!";
     }
 }
