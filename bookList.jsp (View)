@@ -1,0 +1,32 @@
+<%@ page import="java.util.List" %>
+<%@ page import="Book" %>
+<html>
+<head>
+    <title>Library - All Books</title>
+</head>
+<body>
+    <h2>List of Books</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+        </tr>
+ 
+        <%
+            // The Controller placed this list in the request earlier
+            List<Book> books = (List<Book>) request.getAttribute("books");
+            for (Book book : books) {
+        %>
+        <tr>
+            <td><%= book.getTitle() %></td>
+            <td><%= book.getAuthor() %></td>
+            <td><%= book.getIsbn() %></td>
+        </tr>
+        <%
+            }
+        %>
+    </table>
+</body>
+</html>
+ 
