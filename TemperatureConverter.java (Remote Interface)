@@ -1,0 +1,15 @@
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+ 
+/**
+ * TemperatureConverter.java
+ * This is the "contract" that both the server and the client agree on.
+ * Any interface used for RMI must extend Remote, and every method
+ * must be able to throw a RemoteException (because network problems
+ * can happen at any time).
+ */
+public interface TemperatureConverter extends Remote {
+    double celsiusToFahrenheit(double celsius) throws RemoteException;
+    double fahrenheitToCelsius(double fahrenheit) throws RemoteException;
+}
+ 
