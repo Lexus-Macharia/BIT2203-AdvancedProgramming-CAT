@@ -1,13 +1,7 @@
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
- 
-/**
- * AppConfig.java
- * Tells Spring where to look for the classes annotated with
- * @Service and @Repository, so it can create and connect them
- * automatically (this is called "component scanning").
- */
+
 @Configuration
-@ComponentScan(basePackages = "com.example.university")
+@ComponentScan("com.example.university")
 public class AppConfig {
 }
